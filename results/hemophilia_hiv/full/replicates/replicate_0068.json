@@ -1,0 +1,188 @@
+{
+  "comparisons": {
+    "interval_aware": {
+      "certain_cover_gain": -0.25806451612903225,
+      "certain_miss_reduction": 0.021505376344086016,
+      "geometric_lpb_ratio": 1.019742731507876,
+      "interval_nll_improvement": 0.021642199915692495,
+      "target_compatibility_gain": 1
+    },
+    "midpoint": {
+      "certain_cover_gain": -0.25806451612903225,
+      "certain_miss_reduction": 0.021505376344086016,
+      "geometric_lpb_ratio": 0.9538001372212074,
+      "interval_nll_improvement": 0.023910618471249867,
+      "target_compatibility_gain": 1
+    }
+  },
+  "methods": {
+    "interval_aware": {
+      "fit": {
+        "beta": [
+          4.692192526052974,
+          -0.7467301085239475
+        ],
+        "iterations": 13,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "objective": 163.05570464048253,
+        "sigma": 1.1918920195536333,
+        "success": true
+      },
+      "metrics": {
+        "ambiguous_fraction": 0.6881720430107526,
+        "calibration_quantile_log_residual": -1.0382527650490259,
+        "certain_miss_fraction": 0.08602150537634409,
+        "coverage_identified_lower": 0.22580645161290322,
+        "coverage_identified_upper": 0.9139784946236559,
+        "geometric_mean_lpb": 38.214062718075276,
+        "heldout_interval_nll": 0.8781184392050141,
+        "mean_lpb": 48.03738157372752,
+        "median_lpb": 67.51859532302808,
+        "resolved_fraction": 0.3118279569892473,
+        "target_compatible": true
+      },
+      "subgroups": {
+        "low dose": {
+          "ambiguous_fraction": 0.38235294117647056,
+          "certain_miss_fraction": 0.0,
+          "coverage_identified_lower": 0.6176470588235294,
+          "coverage_identified_upper": 1.0,
+          "geometric_mean_lpb": 14.23174594994119,
+          "mean_lpb": 14.231745949941189,
+          "median_lpb": 14.23174594994119,
+          "n": 34,
+          "resolved_fraction": 0.6176470588235294,
+          "target_compatible": true
+        },
+        "no": {
+          "ambiguous_fraction": 0.864406779661017,
+          "certain_miss_fraction": 0.13559322033898305,
+          "coverage_identified_lower": 0.0,
+          "coverage_identified_upper": 0.864406779661017,
+          "geometric_mean_lpb": 67.51859532302802,
+          "mean_lpb": 67.51859532302808,
+          "median_lpb": 67.51859532302808,
+          "n": 59,
+          "resolved_fraction": 0.13559322033898305,
+          "target_compatible": false
+        }
+      }
+    },
+    "midpoint": {
+      "fit": {
+        "beta": [
+          4.614023381701579,
+          -0.682072531632368
+        ],
+        "iterations": 12,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "objective": 279.0793960238808,
+        "sigma": 1.1096443454742915,
+        "success": true
+      },
+      "metrics": {
+        "ambiguous_fraction": 0.6881720430107526,
+        "calibration_quantile_log_residual": -1.0278647415330586,
+        "certain_miss_fraction": 0.08602150537634409,
+        "coverage_identified_lower": 0.22580645161290322,
+        "coverage_identified_upper": 0.9139784946236559,
+        "geometric_mean_lpb": 35.7429154806371,
+        "heldout_interval_nll": 0.8758500206494567,
+        "mean_lpb": 43.43879737599341,
+        "median_lpb": 60.11539247402353,
+        "resolved_fraction": 0.3118279569892473,
+        "target_compatible": true
+      },
+      "subgroups": {
+        "low dose": {
+          "ambiguous_fraction": 0.38235294117647056,
+          "certain_miss_fraction": 0.0,
+          "coverage_identified_lower": 0.6176470588235294,
+          "coverage_identified_upper": 1.0,
+          "geometric_mean_lpb": 14.5,
+          "mean_lpb": 14.5,
+          "median_lpb": 14.5,
+          "n": 34,
+          "resolved_fraction": 0.6176470588235294,
+          "target_compatible": true
+        },
+        "no": {
+          "ambiguous_fraction": 0.864406779661017,
+          "certain_miss_fraction": 0.13559322033898305,
+          "coverage_identified_lower": 0.0,
+          "coverage_identified_upper": 0.864406779661017,
+          "geometric_mean_lpb": 60.11539247402353,
+          "mean_lpb": 60.115392474023515,
+          "median_lpb": 60.11539247402353,
+          "n": 59,
+          "resolved_fraction": 0.13559322033898305,
+          "target_compatible": false
+        }
+      }
+    },
+    "naive_upper": {
+      "fit": {
+        "beta": [
+          4.4051005568622665,
+          -0.4747129172818027
+        ],
+        "iterations": 13,
+        "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+        "objective": 275.61483456363584,
+        "sigma": 0.7509932511057693,
+        "success": true
+      },
+      "metrics": {
+        "ambiguous_fraction": 0.4086021505376344,
+        "calibration_quantile_log_residual": -0.7746221189096869,
+        "certain_miss_fraction": 0.10752688172043011,
+        "coverage_identified_lower": 0.4838709677419355,
+        "coverage_identified_upper": 0.8924731182795699,
+        "geometric_mean_lpb": 37.474219268588264,
+        "heldout_interval_nll": 0.8997606391207066,
+        "mean_lpb": 41.45094671320249,
+        "median_lpb": 53.812509225895425,
+        "resolved_fraction": 0.5913978494623656,
+        "target_compatible": false
+      },
+      "subgroups": {
+        "low dose": {
+          "ambiguous_fraction": 0.3529411764705882,
+          "certain_miss_fraction": 0.058823529411764705,
+          "coverage_identified_lower": 0.5882352941176471,
+          "coverage_identified_upper": 0.9411764705882353,
+          "geometric_mean_lpb": 20.000000000000007,
+          "mean_lpb": 19.999999999999996,
+          "median_lpb": 19.999999999999996,
+          "n": 34,
+          "resolved_fraction": 0.6470588235294118,
+          "target_compatible": true
+        },
+        "no": {
+          "ambiguous_fraction": 0.44067796610169496,
+          "certain_miss_fraction": 0.13559322033898305,
+          "coverage_identified_lower": 0.423728813559322,
+          "coverage_identified_upper": 0.864406779661017,
+          "geometric_mean_lpb": 53.812509225895454,
+          "mean_lpb": 53.81250922589544,
+          "median_lpb": 53.812509225895425,
+          "n": 59,
+          "resolved_fraction": 0.559322033898305,
+          "target_compatible": false
+        }
+      }
+    }
+  },
+  "replicate": 68,
+  "seed": 7202745,
+  "split_clusters": {
+    "cal": 91,
+    "test": 93,
+    "train": 184
+  },
+  "split_rows": {
+    "cal": 91,
+    "test": 93,
+    "train": 184
+  }
+}

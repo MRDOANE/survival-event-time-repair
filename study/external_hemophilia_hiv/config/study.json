@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "study_status": "FROZEN_BEFORE_EXECUTION",
+  "cohort": {
+    "name": "hemophilia_hiv",
+    "title": "External interval-censored validation: Multicenter Hemophilia HIV Cohort",
+    "data_csv": "data/hiv.csv",
+    "expected_rows": 368,
+    "expected_clusters": 368,
+    "expected_finite_upper": 103,
+    "time_unit": "quarters since 1978-01-01",
+    "endpoint": "HIV-1 infection",
+    "covariates": ["low-dose factor VIII concentrate versus none"]
+  },
+  "analysis": {
+    "estimand": "Out-of-sample 90% conformal lower prediction-bound performance for time to HIV-1 infection under the cohort's natural interval-observation process",
+    "alpha": 0.1,
+    "bootstrap_replicates": 500,
+    "seed": 81173,
+    "split": [0.5, 0.25, 0.25],
+    "resampling_unit": "patient",
+    "stratification": "treatment-by-finite-upper-status",
+    "ridge": 0.00001,
+    "maxiter": 800,
+    "min_subgroup_rows": 8,
+    "finite_sample_correction": false,
+    "primary_predictive_score": "held-out natural interval negative log likelihood",
+    "coverage_reporting": "partial identification from observed event intervals"
+  },
+  "methods": {
+    "naive_upper": "Finite event intervals are coded at the recorded upper endpoint; right censoring is retained.",
+    "midpoint": "Finite event intervals are coded at their midpoint; right censoring is retained.",
+    "interval_aware": "The log-normal AFT likelihood uses left-, interval-, and right-censored observations directly; calibration uses fitted conditional medians within each observed interval."
+  },
+  "gate": {
+    "min_successful_replicate_fraction": 0.95,
+    "min_nll_positive_fraction": 0.60,
+    "max_certain_miss_increase": 0.005,
+    "min_geometric_lpb_ratio": 0.75,
+    "min_target_compatibility_fraction": 0.75,
+    "supportive_rule": "All checks must pass, including a positive lower 95% bootstrap bound for held-out interval-NLL improvement versus naive upper-endpoint coding.",
+    "contrary_rule": "The upper 95% bootstrap bound for interval-NLL improvement is below zero, or the upper 95% bound for certain-miss reduction is worse than the allowed margin.",
+    "otherwise": "neutral"
+  }
+}

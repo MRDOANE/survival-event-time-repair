@@ -1,0 +1,327 @@
+{
+  "cohort": "mastitis",
+  "comparisons": {
+    "interval_aware": {
+      "checks": {
+        "certain_miss_noninferiority": true,
+        "informativeness_retained": false,
+        "proper_score_directional_breadth": true,
+        "proper_score_lower_95_positive": false,
+        "proper_score_mean_improves": true,
+        "replicate_completion": true,
+        "target_compatibility": true
+      },
+      "classification": "neutral",
+      "metrics": {
+        "certain_cover_gain": {
+          "lower_95": 0.0,
+          "mean": 0.0954047619047619,
+          "median": 0.09523809523809523,
+          "positive_fraction": 0.968,
+          "upper_95": 0.2142857142857143
+        },
+        "certain_miss_reduction": {
+          "lower_95": 0.0,
+          "mean": 0.08097619047619048,
+          "median": 0.07142857142857144,
+          "positive_fraction": 0.97,
+          "upper_95": 0.19047619047619047
+        },
+        "geometric_lpb_ratio": {
+          "lower_95": 0.6639625431131363,
+          "mean": 0.7236088332339728,
+          "median": 0.7243821209566292,
+          "positive_fraction": 1.0,
+          "upper_95": 0.7726218327955963
+        },
+        "interval_nll_improvement": {
+          "lower_95": -0.03998535476519886,
+          "mean": 0.060215073860639394,
+          "median": 0.05612772794529264,
+          "positive_fraction": 0.842,
+          "upper_95": 0.18816682694888512
+        },
+        "target_compatibility_gain": {
+          "lower_95": 0.0,
+          "mean": 0.418,
+          "median": 0.0,
+          "positive_fraction": 0.43,
+          "upper_95": 1.0
+        }
+      }
+    },
+    "midpoint": {
+      "checks": {
+        "certain_miss_noninferiority": true,
+        "informativeness_retained": false,
+        "proper_score_directional_breadth": true,
+        "proper_score_lower_95_positive": false,
+        "proper_score_mean_improves": true,
+        "replicate_completion": true,
+        "target_compatibility": true
+      },
+      "classification": "neutral",
+      "metrics": {
+        "certain_cover_gain": {
+          "lower_95": 0.011904761904761862,
+          "mean": 0.11023809523809525,
+          "median": 0.1071428571428571,
+          "positive_fraction": 0.982,
+          "upper_95": 0.25
+        },
+        "certain_miss_reduction": {
+          "lower_95": 0.0,
+          "mean": 0.08638095238095238,
+          "median": 0.08333333333333333,
+          "positive_fraction": 0.972,
+          "upper_95": 0.20238095238095238
+        },
+        "geometric_lpb_ratio": {
+          "lower_95": 0.5154404945329636,
+          "mean": 0.6916428088402194,
+          "median": 0.7024850069482735,
+          "positive_fraction": 1.0,
+          "upper_95": 0.7705319990381274
+        },
+        "interval_nll_improvement": {
+          "lower_95": -0.034489774589866504,
+          "mean": 0.061173906670706046,
+          "median": 0.05753948276061793,
+          "positive_fraction": 0.85,
+          "upper_95": 0.18817172118541148
+        },
+        "target_compatibility_gain": {
+          "lower_95": -1.0,
+          "mean": 0.418,
+          "median": 0.0,
+          "positive_fraction": 0.45,
+          "upper_95": 1.0
+        }
+      }
+    }
+  },
+  "created_utc": "2026-09-04T15:59:32.311114+00:00",
+  "data_audit": {
+    "clusters": 100,
+    "finite_upper": 317,
+    "left_censored": 26,
+    "right_censored": 83,
+    "rows": 400
+  },
+  "decision": "NEUTRAL",
+  "estimand": "Out-of-cow 90% conformal lower prediction-bound performance for time to first udder-quarter infection under the cohort's natural interval-observation process",
+  "gate_thresholds": {
+    "contrary_rule": "The upper 95% bootstrap bound for interval-NLL improvement is below zero, or the upper 95% bound for certain-miss reduction is worse than the allowed margin.",
+    "max_certain_miss_increase": 0.005,
+    "min_geometric_lpb_ratio": 0.75,
+    "min_nll_positive_fraction": 0.6,
+    "min_successful_replicate_fraction": 0.95,
+    "min_target_compatibility_fraction": 0.75,
+    "otherwise": "neutral",
+    "supportive_rule": "All checks must pass, including a positive lower 95% bootstrap bound for held-out interval-NLL improvement versus naive upper-endpoint coding."
+  },
+  "interpretation": "External interval-censored evidence is evaluated with held-out interval log score and partially identified lower-bound coverage. No latent event time is treated as observed.",
+  "methods": {
+    "interval_aware": {
+      "ambiguous_fraction": {
+        "lower_95": 0.10714285714285718,
+        "mean": 0.23697619047619048,
+        "median": 0.23809523809523808,
+        "positive_fraction": 1.0,
+        "upper_95": 0.38095238095238093
+      },
+      "certain_miss_fraction": {
+        "lower_95": 0.0,
+        "mean": 0.035571428571428566,
+        "median": 0.023809523809523808,
+        "positive_fraction": 0.744,
+        "upper_95": 0.13095238095238096
+      },
+      "coverage_identified_lower": {
+        "lower_95": 0.5476190476190477,
+        "mean": 0.727452380952381,
+        "median": 0.7321428571428572,
+        "positive_fraction": 1.0,
+        "upper_95": 0.8809523809523809
+      },
+      "coverage_identified_upper": {
+        "lower_95": 0.8690476190476191,
+        "mean": 0.9644285714285714,
+        "median": 0.9761904761904762,
+        "positive_fraction": 1.0,
+        "upper_95": 1.0
+      },
+      "geometric_mean_lpb": {
+        "lower_95": 28.884861381167017,
+        "mean": 38.579885718947736,
+        "median": 38.040815503395166,
+        "positive_fraction": 1.0,
+        "upper_95": 49.67906367215001
+      },
+      "heldout_interval_nll": {
+        "lower_95": 1.7657097817194722,
+        "mean": 2.0134485473310253,
+        "median": 2.0170176079500317,
+        "positive_fraction": 1.0,
+        "upper_95": 2.267986316412797
+      },
+      "mean_lpb": {
+        "lower_95": 30.28681665408495,
+        "mean": 40.109545893613856,
+        "median": 39.63158213917529,
+        "positive_fraction": 1.0,
+        "upper_95": 51.8837880765563
+      },
+      "median_lpb": {
+        "lower_95": 28.914238005638236,
+        "mean": 40.170638053457445,
+        "median": 39.52426306840195,
+        "positive_fraction": 1.0,
+        "upper_95": 52.565666382453166
+      },
+      "resolved_fraction": {
+        "lower_95": 0.6190476190476191,
+        "mean": 0.7630238095238095,
+        "median": 0.7619047619047619,
+        "positive_fraction": 1.0,
+        "upper_95": 0.8928571428571428
+      },
+      "target_compatibility_fraction": 0.904
+    },
+    "midpoint": {
+      "ambiguous_fraction": {
+        "lower_95": 0.08333333333333337,
+        "mean": 0.22754761904761905,
+        "median": 0.22619047619047616,
+        "positive_fraction": 1.0,
+        "upper_95": 0.38095238095238093
+      },
+      "certain_miss_fraction": {
+        "lower_95": 0.0,
+        "mean": 0.030166666666666665,
+        "median": 0.011904761904761904,
+        "positive_fraction": 0.674,
+        "upper_95": 0.11904761904761904
+      },
+      "coverage_identified_lower": {
+        "lower_95": 0.5532738095238096,
+        "mean": 0.7422857142857143,
+        "median": 0.75,
+        "positive_fraction": 1.0,
+        "upper_95": 0.9047619047619048
+      },
+      "coverage_identified_upper": {
+        "lower_95": 0.8809523809523809,
+        "mean": 0.9698333333333333,
+        "median": 0.9880952380952381,
+        "positive_fraction": 1.0,
+        "upper_95": 1.0
+      },
+      "geometric_mean_lpb": {
+        "lower_95": 23.479295785015854,
+        "mean": 36.969041972611684,
+        "median": 36.519162075228905,
+        "positive_fraction": 1.0,
+        "upper_95": 49.42220155578394
+      },
+      "heldout_interval_nll": {
+        "lower_95": 1.7664707669587243,
+        "mean": 2.0124897145209584,
+        "median": 2.0137197468313417,
+        "positive_fraction": 1.0,
+        "upper_95": 2.2667391800799312
+      },
+      "mean_lpb": {
+        "lower_95": 24.712788850575944,
+        "mean": 38.34378709464825,
+        "median": 38.10930835954906,
+        "positive_fraction": 1.0,
+        "upper_95": 50.91171143690433
+      },
+      "median_lpb": {
+        "lower_95": 24.675098190560806,
+        "mean": 38.35849529232694,
+        "median": 38.15450129390534,
+        "positive_fraction": 1.0,
+        "upper_95": 51.80881547921823
+      },
+      "resolved_fraction": {
+        "lower_95": 0.6190476190476191,
+        "mean": 0.772452380952381,
+        "median": 0.7738095238095238,
+        "positive_fraction": 1.0,
+        "upper_95": 0.9166666666666666
+      },
+      "target_compatibility_fraction": 0.904
+    },
+    "naive_upper": {
+      "ambiguous_fraction": {
+        "lower_95": 0.11279761904761906,
+        "mean": 0.2514047619047619,
+        "median": 0.25,
+        "positive_fraction": 1.0,
+        "upper_95": 0.4047619047619047
+      },
+      "certain_miss_fraction": {
+        "lower_95": 0.011904761904761904,
+        "mean": 0.11654761904761905,
+        "median": 0.10714285714285714,
+        "positive_fraction": 0.98,
+        "upper_95": 0.27380952380952384
+      },
+      "coverage_identified_lower": {
+        "lower_95": 0.4642857142857143,
+        "mean": 0.6320476190476191,
+        "median": 0.6309523809523809,
+        "positive_fraction": 1.0,
+        "upper_95": 0.7857142857142857
+      },
+      "coverage_identified_upper": {
+        "lower_95": 0.7261904761904762,
+        "mean": 0.883452380952381,
+        "median": 0.8928571428571429,
+        "positive_fraction": 1.0,
+        "upper_95": 0.9880952380952381
+      },
+      "geometric_mean_lpb": {
+        "lower_95": 42.00582733503868,
+        "mean": 53.20137944765367,
+        "median": 52.93988065212557,
+        "positive_fraction": 1.0,
+        "upper_95": 66.17970311603712
+      },
+      "heldout_interval_nll": {
+        "lower_95": 1.8165091208599329,
+        "mean": 2.0736636211916646,
+        "median": 2.0805425079350277,
+        "positive_fraction": 1.0,
+        "upper_95": 2.33940021729825
+      },
+      "mean_lpb": {
+        "lower_95": 43.45362790531095,
+        "mean": 54.447633350122054,
+        "median": 54.1106513393509,
+        "positive_fraction": 1.0,
+        "upper_95": 68.57532756030884
+      },
+      "median_lpb": {
+        "lower_95": 41.74803960066164,
+        "mean": 54.58548983305621,
+        "median": 54.3504832736691,
+        "positive_fraction": 1.0,
+        "upper_95": 69.23934048436976
+      },
+      "resolved_fraction": {
+        "lower_95": 0.5952380952380952,
+        "mean": 0.7485952380952381,
+        "median": 0.75,
+        "positive_fraction": 1.0,
+        "upper_95": 0.8872023809523807
+      },
+      "target_compatibility_fraction": 0.486
+    }
+  },
+  "planned_replicates": 500,
+  "successful_replicate_fraction": 1.0,
+  "successful_replicates": 500
+}

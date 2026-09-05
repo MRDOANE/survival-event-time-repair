@@ -1,0 +1,267 @@
+run:
+  kind: full
+  name: full
+  n_jobs: 12
+  fail_fast: false
+  bootstrap_reps: 10000
+  preflight_timeout_seconds: 900
+  trial_timeout_seconds: 5400
+  compatibility_hotfix:
+    id: gate3-gbsg2-reference-coding-v1
+    affected_dataset: gbsg2_semisynthetic_mixture
+    base_scientific_config_hash: c995696c82ead376c690aeca35b4480d
+    base_implementation_sha256: 9b1497562f0d210e71f59862e43c1f543c460dea7a76265952684491d8ee2718
+    prior_result_archive_sha256: cece54bbc9024188adfd3e1018d4c5c16bc55e57a6727e9d035dcbd7790d0083
+    expected_prior_completed: 960
+    expected_prior_errors: 240
+    expected_error_contains: conditional interval imputation returned invalid event times
+
+experiment:
+  split: [0.40, 0.10, 0.25, 0.25]
+  # Gate 3 seeds are disjoint from Gates 2.5, 2.6, and 2.7.
+  seeds: [2377, 2503, 2621, 2749, 2879, 3001]
+  prohibited_prior_seeds:
+    [101, 211, 307, 419, 503, 617, 733, 859, 977, 1091, 1213, 1327,
+     1429, 1543, 1667, 1789, 1901, 2017, 2131, 2251]
+  finite_sample_correction: false
+  official_models:
+    survival: survreg_lognormal
+    censoring: survreg_lognormal
+
+  datasets:
+    - name: synthetic_linear_lognormal
+      p: 12
+      mechanism: linear
+      outcome_distribution: lognormal
+    - name: synthetic_nonlinear_lognormal
+      p: 12
+      mechanism: nonlinear
+      outcome_distribution: lognormal
+    - name: synthetic_nonlinear_weibull
+      p: 12
+      mechanism: nonlinear
+      outcome_distribution: weibull_ph
+    - name: rossi_semisynthetic_loglogistic
+      public_covariates: rossi
+      mechanism: nonlinear
+      outcome_distribution: loglogistic
+      require_public: true
+    - name: gbsg2_semisynthetic_mixture
+      public_covariates: gbsg2
+      mechanism: nonlinear
+      outcome_distribution: mixture_lognormal
+      require_public: true
+
+  regimes:
+    - name: main
+      n: 2500
+      alpha: 0.10
+      target_censoring: 0.35
+      censoring_mechanism: independent_lognormal
+      clean_coverage_tolerance: 0.025
+      coverage_tolerance: 0.035
+    - name: high_censoring
+      n: 3000
+      alpha: 0.10
+      target_censoring: 0.55
+      censoring_mechanism: independent_lognormal
+      clean_coverage_tolerance: 0.030
+      coverage_tolerance: 0.040
+    - name: target95
+      n: 3200
+      alpha: 0.05
+      target_censoring: 0.35
+      censoring_mechanism: independent_lognormal
+      clean_coverage_tolerance: 0.025
+      coverage_tolerance: 0.035
+    - name: small_sample
+      n: 1400
+      alpha: 0.10
+      target_censoring: 0.35
+      censoring_mechanism: independent_lognormal
+      clean_coverage_tolerance: 0.040
+      coverage_tolerance: 0.050
+    - name: dependent_censoring
+      n: 3000
+      alpha: 0.10
+      target_censoring: 0.45
+      censoring_mechanism: covariate_dependent_nonlinear
+      clean_coverage_tolerance: 0.030
+      coverage_tolerance: 0.040
+
+  noise_scenarios:
+    - name: ceiling_grid20_known
+      family: declared_ceiling_grid
+      gate_role: anchor
+      scope: train_cal
+      severity: 0.20
+      time_error_mode: heap_ceiling
+      time_error_fraction: 0.20
+      time_error_probability: 1.0
+      correction_interval_mode: ceiling_grid
+      grid_origin_fraction: 0.0
+      protocol_source: known
+    - name: ceiling_grid20_partial
+      family: declared_ceiling_grid
+      gate_role: primary_stress
+      scope: train_cal
+      severity: 0.20
+      time_error_mode: heap_ceiling
+      time_error_fraction: 0.20
+      time_error_probability: 0.60
+      correction_interval_mode: ceiling_grid
+      grid_origin_fraction: 0.0
+      protocol_source: known
+    - name: ceiling_grid20_shifted
+      family: declared_ceiling_grid
+      gate_role: primary_stress
+      scope: train_cal
+      severity: 0.20
+      time_error_mode: heap_ceiling
+      time_error_fraction: 0.20
+      time_error_probability: 1.0
+      correction_interval_mode: ceiling_grid
+      grid_origin_fraction: 0.37
+      protocol_source: known
+    - name: ceiling_grid20_estimated
+      family: estimated_ceiling_grid
+      gate_role: primary_stress
+      scope: train_cal
+      severity: 0.20
+      time_error_mode: heap_ceiling
+      time_error_fraction: 0.20
+      time_error_probability: 1.0
+      correction_interval_mode: ceiling_grid
+      grid_origin_fraction: 0.37
+      protocol_source: estimated
+    - name: visits_regular20
+      family: recorded_visit_interval
+      gate_role: primary_stress
+      scope: train_cal
+      severity: 0.20
+      time_error_mode: scheduled_regular
+      time_error_fraction: 0.20
+      time_error_probability: 1.0
+      correction_interval_mode: recorded_interval
+      grid_origin_fraction: 0.19
+      visit_gap_cv: 0.0
+    - name: visits_irregular20
+      family: recorded_visit_interval
+      gate_role: primary_stress
+      scope: train_cal
+      severity: 0.20
+      time_error_mode: scheduled_irregular
+      time_error_fraction: 0.20
+      time_error_probability: 1.0
+      correction_interval_mode: recorded_interval
+      visit_gap_cv: 0.45
+    - name: visits_informative20
+      family: recorded_visit_interval
+      gate_role: primary_stress
+      scope: train_cal
+      severity: 0.20
+      time_error_mode: scheduled_informative
+      time_error_fraction: 0.20
+      time_error_probability: 1.0
+      correction_interval_mode: recorded_interval
+      visit_gap_cv: 0.55
+    - name: event_delay15_known
+      family: multiplicative_event_delay
+      gate_role: secondary_transport
+      scope: train_cal
+      severity: 0.15
+      time_error_mode: delay_fraction
+      time_error_fraction: 0.15
+      time_error_probability: 1.0
+      correction_interval_mode: multiplicative_delay
+      protocol_source: known
+
+correction:
+  primary_method: midpoint_proxy_drcosarc_adaptive
+  interval_aware_method: interval_conditional_cal_drcosarc_adaptive
+  stopped_gate26_method: stopped_interval_lower_cal_drcosarc_adaptive
+  interval_survival_model: lognormal_survreg_interval2
+  interval_imputation: fitted_lognormal_conditional_median
+  primary_proxy: midpoint_interval_endpoint
+  protocol_information: declared_estimated_or_recorded_visit_interval
+  lower_floor: 0.000001
+  span_sensitivity_multipliers:
+    under: 0.75
+    over: 1.25
+  wrong_direction_multiplier: 0.50
+
+gate:
+  anchor_condition: ceiling_grid20_known
+  anchor_regime: main
+  primary_conditions:
+    - ceiling_grid20_known
+    - ceiling_grid20_partial
+    - ceiling_grid20_shifted
+    - ceiling_grid20_estimated
+    - visits_regular20
+    - visits_irregular20
+    - visits_informative20
+  anchor_failure:
+    min_naive_drop: 0.025
+    min_undercoverage: 0.020
+    min_naive_drop_lower_95: 0.015
+  midpoint:
+    anchor:
+      min_repair: 0.025
+      min_repair_lower_95: 0.015
+      coverage_tolerance: 0.030
+      min_positive_trial_fraction: 0.80
+      min_dataset_success_count: 4
+      min_lpb_ratio_clean: 0.88
+      min_accuracy_gain_vs_stopped: 0.015
+      min_loss_recovery_fraction: 0.65
+      max_loss_recovery_fraction: 1.40
+    cell:
+      min_repair: 0.008
+      min_repair_lower_95: 0.0015
+      min_positive_trial_fraction: 0.65
+      min_dataset_success_count: 3
+      min_accuracy_gain_vs_naive: 0.003
+      min_lpb_ratio_clean: 0.80
+    min_support_checks_pass: 5
+  interval_aware:
+    anchor:
+      min_repair: 0.022
+      min_repair_lower_95: 0.012
+      coverage_tolerance: 0.030
+      min_positive_trial_fraction: 0.80
+      min_dataset_success_count: 4
+      min_lpb_ratio_clean: 0.88
+      min_accuracy_gain_vs_stopped: 0.012
+    cell:
+      min_repair: 0.007
+      min_repair_lower_95: 0.001
+      min_positive_trial_fraction: 0.65
+      min_dataset_success_count: 3
+      min_accuracy_gain_vs_naive: 0.0025
+      min_lpb_ratio_clean: 0.80
+    min_support_checks_pass: 5
+  breadth:
+    min_cell_naive_drop: 0.012
+    min_dataset_cell_repair: 0.005
+    min_dataset_pooled_repair: 0.005
+    min_success_cells: 23
+    min_main_success_conditions: 5
+    min_success_conditions_per_regime: 4
+    min_success_regimes: 4
+    min_success_regimes_per_condition: 3
+    min_success_conditions: 6
+    min_success_datasets: 4
+    min_pooled_repair_lower_95: 0.004
+    catastrophic_coverage_error: 0.065
+    max_catastrophic_cell_fraction: 0.10
+    min_estimated_success_regimes: 3
+    min_visit_success_cells: 9
+    min_pooled_positive_trial_fraction: 0.68
+    min_accuracy_improved_cell_fraction: 0.68
+    min_pooled_lpb_ratio_clean: 0.82
+    anchor_sensitivity_coverage_tolerance: 0.050
+    min_correct_minus_wrong_coverage: 0.025
+    max_zero_bound_fraction: 0.10
+    max_interval_visit_accuracy_disadvantage: 0.010
+    min_interval_visit_lpb_ratio_midpoint: 0.95

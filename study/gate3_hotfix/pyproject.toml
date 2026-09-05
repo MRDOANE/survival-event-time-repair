@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "survival-drcosarc-gate3"
+version = "0.6.1"
+description = "Paper-scale midpoint and interval-aware event-time correction expansion for adaptive DR-COSARC"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Michael Doane"}]
+dependencies = [
+  "numpy>=1.26,<3",
+  "pandas>=2.1,<3",
+  "scipy>=1.11,<2",
+  "scikit-learn>=1.4,<2",
+  "matplotlib>=3.8,<4",
+  "PyYAML>=6.0,<7",
+  "joblib>=1.3,<2",
+  "lifelines>=0.29,<1",
+]
+
+[project.scripts]
+survival-drcosarc-gate3 = "survival_noise_bakeoff.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
