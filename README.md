@@ -1,5 +1,7 @@
 # Repairing conformal survival lower prediction bounds under event-time coarsening
 
+DOI: 10.5281/zenodo.22370771
+
 Reproducibility repository for a planned submission to *Statistics in Medicine*.
 
 The study asks what happens when a conformal survival procedure designed for
